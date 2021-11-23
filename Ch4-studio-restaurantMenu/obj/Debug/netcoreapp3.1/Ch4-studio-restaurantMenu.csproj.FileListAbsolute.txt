@@ -1,0 +1,14 @@
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\bin\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.exe
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\bin\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.deps.json
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\bin\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.runtimeconfig.json
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\bin\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.runtimeconfig.dev.json
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\bin\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.dll
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\bin\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.pdb
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.csproj.AssemblyReference.cache
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.AssemblyInfoInputs.cache
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.AssemblyInfo.cs
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.csproj.CoreCompileInputs.cache
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.dll
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.pdb
+C:\Users\User\LaunchCode-c\Ch4-classes\Ch4-studio-restaurantMenu\Ch4-studio-restaurantMenu\obj\Debug\netcoreapp3.1\Ch4-studio-restaurantMenu.genruntimeconfig.cache
