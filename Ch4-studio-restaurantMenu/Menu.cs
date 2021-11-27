@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Ch4_studio_restaurantMenu
 {
     internal class Menu
     {
         private List<Item> items = new List<Item>();
-        private static List<string> categories = new List<string> { "appetizer","main course","dessert"};
+        private static List<string> categories = new List<string> { "appetizer", "main course", "dessert" };
         private DateTime lastUpdateTime { get; set; }
         private string MenuTitle { get; set; }
 
@@ -26,7 +25,7 @@ namespace Ch4_studio_restaurantMenu
             }
         }
 
-        public void deleteItem(Item item)
+        public void removeItem(Item item)
         {
             if (items.Contains(item))
             {
@@ -43,11 +42,11 @@ namespace Ch4_studio_restaurantMenu
                 Console.WriteLine($"\t{category}\n");
                 foreach (Item item in items)
                 {
-                    if(item.Category == category)
+                    if (item.Category == category)
                     {
                         Console.WriteLine($"\t\t{item.Name}\t{item.Description}\t\t${item.Price}");
                     }
-                      
+
                 }
                 Console.WriteLine("\t");
             }
