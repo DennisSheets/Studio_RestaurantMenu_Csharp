@@ -76,6 +76,7 @@ namespace Ch4_studio_restaurantMenu
                         {
                             int index = HelperMethods.IndexFromList(items, selection);
                             HelperMethods.DeleteHideItem(items[index-1]);
+                            run();
                         }
                         else if (selection == 4)
                         {

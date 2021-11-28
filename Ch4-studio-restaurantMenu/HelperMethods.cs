@@ -25,7 +25,10 @@ namespace Ch4_studio_restaurantMenu
 
         public static void UpdateTitle(Menu menu)
         {
-            Console.WriteLine("Enter the new Title");
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("\tEnter the new Title");
+            Console.ResetColor();
+            Console.WriteLine("\n");
             string newName = Console.ReadLine();
             menu.rename(newName);
         }
@@ -60,24 +63,24 @@ namespace Ch4_studio_restaurantMenu
 
         public static void AddItem(List<Item> list)
         {
-            Console.WriteLine("Enter the new item's name: ");
+            Console.WriteLine($"\tEnter the new item's name: ");
             string itemName = Console.ReadLine();
 
-            Console.WriteLine("Enter the new item's description");
+            Console.WriteLine($"\tEnter the new item's description");
             string itemDescription = Console.ReadLine();
 
-            Console.WriteLine("Enter the new item's price");
+            Console.WriteLine($"\tEnter the new item's price");
             string itemPrice = Console.ReadLine();
 
-            Console.WriteLine("Category: \n" +
-                "\t1 - appetizer\n" +
-                "\t2 - main course\n" +
-                "\t3 - desert\n");
+            Console.WriteLine($"\tCategory: \n" +
+                "\t\t1 - appetizer\n" +
+                "\t\t2 - main course\n" +
+                "\t\t3 - desert\n");
             int categorySelection = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Do you want this tagged as a NEW item? \n " +
-                "\t1 - yes" +
-                "\t2 - no");
+            
+            Console.WriteLine($"\tDo you want this tagged as a NEW item? \n " +
+                $"\t\t1 - yes\n" +
+                $"\t\t2 - no\n");
             int newSelection = int.Parse(Console.ReadLine());
 
             bool itemSetAsNew;
@@ -94,7 +97,7 @@ namespace Ch4_studio_restaurantMenu
             else if (categorySelection == 3) 
                 { itemCategory = Menu.categories[2]; }
             else 
-                { itemCategory = "What the fuck is this"; }
+                { itemCategory = "\tWhat the fuck is this"; }
 
             int index = list.FindIndex(x => x.IsEmpty == true);
             if (itemName != "")
@@ -112,22 +115,22 @@ namespace Ch4_studio_restaurantMenu
 
         public static void EditItem(Item item)
         {
-            Console.WriteLine($"{item.Name}:  Type a new name or press 'Enter' to keep this name");
+            Console.WriteLine($"\t{item.Name}:  Type a new name or press 'Enter' to keep this name");
             string itemName = Console.ReadLine();
 
-            Console.WriteLine($"{item.Description}: Type a new description or press 'Enter' to keep this description");
+            Console.WriteLine($"\t{item.Description}: Type a new description or press 'Enter' to keep this description");
             string itemDescription = Console.ReadLine();
 
-            Console.WriteLine($"{item.Price}: Type a new price or press 'Enter' to keep this price");
+            Console.WriteLine($"\t{item.Price}: Type a new price or press 'Enter' to keep this price");
             string itemPrice = Console.ReadLine();
 
-            Console.WriteLine($"{item.Category}: Enter the Category ID, or press 'Enter' to keep this category: \n" +
-                "\t1 - appetizer\n" +
-                "\t2 - main course\n" +
-                "\t3 - desert\n");
+            Console.WriteLine($"\t{item.Category}: Enter the Category ID, or press 'Enter' to keep this category: \n" +
+                "\t\t1 - appetizer\n" +
+                "\t\t2 - main course\n" +
+                "\t\t3 - desert\n");
             string categorySelection = Console.ReadLine();
 
-            Console.WriteLine("Do you want this tagged as a NEW item? \n " +
+            Console.WriteLine($"\tDo you want this tagged as a NEW item? \n " +
                 "\t1 - yes\n" +
                 "\t2 - no\n");
             string newSelection = Console.ReadLine();
@@ -150,13 +153,13 @@ namespace Ch4_studio_restaurantMenu
 
         public static void DeleteHideItem(Item item)
         {
-            Console.WriteLine($"Do you want to HIDE or DELETE the item: {item} \n " +
-                "\t1 - delete\n" +
-                "\t2 - hide\n");
+            Console.WriteLine($"\tDo you want to HIDE or DELETE the item: {item} \n " +
+                "\t\t1 - delete\n" +
+                "\t\t2 - hide\n");
             string deleteHiden = Console.ReadLine();
             if (int.Parse(deleteHiden) == 1)
             {
-                Console.WriteLine("If you are sure you want to delete, type 'DELETE' to confirm");
+                Console.WriteLine("\tIf you are sure you want to delete, type 'DELETE' to confirm");
                 string confirmDelete = Console.ReadLine();
                 if(confirmDelete == "DELETE")
                 {

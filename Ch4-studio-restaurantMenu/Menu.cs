@@ -70,8 +70,9 @@ namespace Ch4_studio_restaurantMenu
 
         public void printMenu()
         {
-            Console.WriteLine(MenuTitle);
-            Console.WriteLine($"Last updated on: {LastUpdateTime}\n");
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine($"\n\n\t\t\t {MenuTitle}     updated : {LastUpdateTime}\n");
+            Console.ResetColor();
             foreach (string category in categories)
             {
                 Console.WriteLine($"\t{category.ToUpper()}\n");
