@@ -68,6 +68,7 @@ namespace Ch4_studio_restaurantMenu
                             }
                             else 
                             {
+                                HelperMethods.ErrorCode();
                                 Console.WriteLine("Menu is full! You'll need to remove or edit an exiting item");
                                 logic();
                             }
@@ -90,6 +91,7 @@ namespace Ch4_studio_restaurantMenu
                         }
                         else
                         {
+                            HelperMethods.ErrorCode();
                             Console.WriteLine($"{error}");
                             logic();
                         }
@@ -97,6 +99,7 @@ namespace Ch4_studio_restaurantMenu
                 }
                 catch (Exception ex)
                 {
+                    HelperMethods.ErrorCode();
                     Console.WriteLine($"{error}");
                     logic();
                 }
@@ -105,6 +108,7 @@ namespace Ch4_studio_restaurantMenu
             void run()
             {
                 Console.Clear();
+                HelperMethods.ErrorCode();
                 menu1.printMenu();
                 logic();
             }

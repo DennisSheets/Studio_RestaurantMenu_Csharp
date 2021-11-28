@@ -6,6 +6,14 @@ namespace Ch4_studio_restaurantMenu
 {
     internal class HelperMethods
     {
+
+        public static void ErrorCode()
+        {
+            Random random = new Random();
+            int index = random.Next(0,Error.code.Count);
+            Console.WriteLine(Error.code[index]);
+        }
+
         public static int menuOptions()
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
