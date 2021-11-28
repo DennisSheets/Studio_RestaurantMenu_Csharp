@@ -8,13 +8,17 @@ namespace Ch4_studio_restaurantMenu
     {
         public static int menuOptions()
         {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine($"\n\n" +
-                $"What would you like to do?\n" +
-                $"\t1 - edit menu title\n" +
-                $"\t2 - add a new item to the menu\n" +
-                $"\t3 - remove an item from the menu\n" +
-                $"\t4 - edit and item\n" +
-                $"\t5 - display the menu\n");
+                $"\tWhat would you like to do?");
+            Console.ResetColor();
+            Console.WriteLine($"\n" +
+                $"\t\t1 - EDIT menu title\n" +
+                $"\t\t2 - ADD a new item to the menu\n" +
+                $"\t\t3 - DELETE or HIDE an item\n" +
+                $"\t\t4 - EDIT an item\n" +
+                $"\t\t5 - DISPLAY the menu\n");
+
             return int.Parse(Console.ReadLine());
         }
 
@@ -27,10 +31,34 @@ namespace Ch4_studio_restaurantMenu
         }
 
 
+        public static int IndexFromList(List<Item> list, int selection)
+        {
+            if (selection == 3)
+                { Console.WriteLine("Enter the ID: of the Item that you want to Delete or Hide"); }
+            else
+                { Console.WriteLine("Enter the ID: of the Item that you want to Edit? "); }
+
+            foreach (Item item in list)
+            {
+                if (!item.IsEmpty)
+                    if (!item.IsHidden) 
+                        { 
+                            Console.Write("\t" + item.ToString() + "\n");
+                        }
+                    else 
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            Console.Write("\t" + item.ToString() + "     --HIDDEN FROM MENU--");
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.Write("\n");
+                    }
+            }
+            string itemToEdit = Console.ReadLine();
+            return int.Parse(itemToEdit);
+        }
 
 
-
-        public static void AddNewItem(List<Item> list)
+        public static void AddItem(List<Item> list)
         {
             Console.WriteLine("Enter the new item's name: ");
             string itemName = Console.ReadLine();
@@ -53,37 +81,32 @@ namespace Ch4_studio_restaurantMenu
             int newSelection = int.Parse(Console.ReadLine());
 
             bool itemSetAsNew;
-            if (newSelection == 1) { itemSetAsNew = true; }
-            else { itemSetAsNew = false; }
+            if (newSelection == 1) 
+                { itemSetAsNew = true; }
+            else 
+                { itemSetAsNew = false; }
 
             string itemCategory;
-            if (categorySelection == 1) { itemCategory = Menu.categories[0]; }
-            else if (categorySelection == 2) { itemCategory = Menu.categories[1]; }
-            else if (categorySelection == 3) { itemCategory = Menu.categories[2]; }
-            else { itemCategory = "What the fuck is this"; }
+            if (categorySelection == 1) 
+                { itemCategory = Menu.categories[0]; }
+            else if (categorySelection == 2) 
+                { itemCategory = Menu.categories[1]; }
+            else if (categorySelection == 3) 
+                { itemCategory = Menu.categories[2]; }
+            else 
+                { itemCategory = "What the fuck is this"; }
 
             int index = list.FindIndex(x => x.IsEmpty == true);
-            if (itemName != "") { list[index].Name = itemName; }
-            if (itemDescription != "") { list[index].Description = itemDescription; }
-            if (itemPrice != "") { list[index].Price = double.Parse(itemPrice); }
-            if (itemCategory != "") { list[index].Category = itemCategory; }
+            if (itemName != "")
+                { list[index].Name = itemName; }
+            if (itemDescription != "") 
+                { list[index].Description = itemDescription; }
+            if (itemPrice != "")       
+                { list[index].Price = double.Parse(itemPrice); }
+            if (itemCategory != "")    
+                { list[index].Category = itemCategory; }
             list[index].IsEmpty = false;
             list[index].IsNew = itemSetAsNew;
-        }
-
-
-        public static int ListItems(List<Item> list)
-        {
-            Console.WriteLine("Enter the ID: of the Item that  would you like to edit? ");
-            foreach (Item item in list)
-            {
-                if(!item.IsEmpty) 
-                {
-                    Console.Write("\t" + item.ToString() + "\n");
-                }
-            }
-            string itemToEdit = Console.ReadLine();
-            return int.Parse(itemToEdit);
         }
 
 
@@ -110,20 +133,45 @@ namespace Ch4_studio_restaurantMenu
             string newSelection = Console.ReadLine();
 
             string itemCategory;
-            if (int.Parse(categorySelection) == 1) { itemCategory = Menu.categories[0]; }
+            if      (int.Parse(categorySelection) == 1) { itemCategory = Menu.categories[0]; }
             else if (int.Parse(categorySelection) == 2) { itemCategory = Menu.categories[1]; }
             else if (int.Parse(categorySelection) == 3) { itemCategory = Menu.categories[2]; }
-            else { itemCategory = "What the fuck is this"; }
+            else                                        { itemCategory = "What the fuck is this"; }
 
-            if (itemName != "") { item.Name = itemName; }
-            if (itemDescription != "") { item.Description = itemDescription; }
-            if (itemPrice != "") { item.Price = double.Parse(itemPrice); }
-            if (categorySelection != "") { item.Category = itemCategory; }
-            if (int.Parse(newSelection) == 1 && newSelection != "") { item.IsNew = true; }
-            else if (int.Parse(newSelection) == 2 && newSelection != "") { item.IsNew = false; }
-
-            item.IsEmpty = false;
+            if (itemName != "")             { item.Name = itemName; }
+            if (itemDescription != "")      { item.Description = itemDescription; }
+            if (itemPrice != "")            { item.Price = double.Parse(itemPrice); }
+            if (categorySelection != "")    { item.Category = itemCategory; }
+            if (int.Parse(newSelection) == 1 && newSelection != "")         { item.IsNew = true; }
+            else if (int.Parse(newSelection) == 2 && newSelection != "")    { item.IsNew = false; }
+                                                                             item.IsEmpty = false;
             
+        }
+
+        public static void DeleteHideItem(Item item)
+        {
+            Console.WriteLine($"Do you want to HIDE or DELETE the item: {item} \n " +
+                "\t1 - delete\n" +
+                "\t2 - hide\n");
+            string deleteHiden = Console.ReadLine();
+            if (int.Parse(deleteHiden) == 1)
+            {
+                Console.WriteLine("If you are sure you want to delete, type 'DELETE' to confirm");
+                string confirmDelete = Console.ReadLine();
+                if(confirmDelete == "DELETE")
+                {
+                    item.Name = "";
+                    item.Description = "";
+                    item.Price = 0.0;
+                    item.Category = "";
+                    item.IsEmpty = true;
+                    item.IsNew = false;
+                }
+            }
+            else if (int.Parse(deleteHiden) == 2) 
+            {
+                item.IsHidden = true;
+            }
         }
     }
 }

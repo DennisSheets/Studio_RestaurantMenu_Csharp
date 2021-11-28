@@ -30,6 +30,7 @@ namespace Ch4_studio_restaurantMenu
             Item item6 = new Item("Classic Cheese plate", "Soft and hard cheeses, served with green apple slices", 9.95, "dessert");
             Item item7 = new Item("Ohio Killer Brownie", "Direct from shitty shitty Ohio, the best brownie ever", 8.95, "dessert");
             Item item8 = new Item("name", "description", 0, "dessert");
+            item8.IsHidden = true;
             
             menu1.addItem(item1);
             menu1.addItem(item2);
@@ -45,7 +46,8 @@ namespace Ch4_studio_restaurantMenu
 
             void logic() {
                 string error = "\t\t !!!!!   NOT A VALID SELECTION   !!!!!";
-                
+                Menu menu = menu1;
+                List<Item> items = menu.Items;
                 
                 try
                 {
@@ -54,14 +56,14 @@ namespace Ch4_studio_restaurantMenu
                     {
                         if (selection == 1)
                         {
-                            HelperMethods.UpdateTitle(menu1);
+                            HelperMethods.UpdateTitle(menu);
                             run();
                         }
                         else if (selection == 2)
                         {
-                            if (menu1.AvailSpace() >= 1)
+                            if (menu.AvailSpace() >= 1)
                             {
-                                HelperMethods.AddNewItem(menu1.Items);
+                                HelperMethods.AddItem(items);
                                 run();
                             }
                             else 
@@ -70,10 +72,15 @@ namespace Ch4_studio_restaurantMenu
                                 logic();
                             }
                         }
+                        else if (selection == 3) 
+                        {
+                            int index = HelperMethods.IndexFromList(items, selection);
+                            HelperMethods.DeleteHideItem(items[index-1]);
+                        }
                         else if (selection == 4)
                         {
-                            int index = HelperMethods.ListItems(menu1.Items);
-                            HelperMethods.EditItem(menu1.Items[index-1]);
+                            int index = HelperMethods.IndexFromList(items,selection);
+                            HelperMethods.EditItem(items[index-1]);
                             run();
                         }
                         else if (selection == 5) 

@@ -16,6 +16,7 @@ namespace Ch4_studio_restaurantMenu
         public DateTime DateCreated { get; set; }
         public bool IsNew { get; set; }
         public bool IsEmpty { get; set; }
+        public bool IsHidden { get; set; }
 
         public Item(string name, string description, double price, string category)
         {
@@ -26,6 +27,7 @@ namespace Ch4_studio_restaurantMenu
             DateCreated = DateTime.Now;
             IsNew = false;
             IsEmpty = false;
+            IsHidden = false;
             ID = NextID;
             NextID++;
 
@@ -35,6 +37,7 @@ namespace Ch4_studio_restaurantMenu
             
             IsNew=false;
             IsEmpty = true;
+            IsHidden=false;
             ID = NextID;
             NextID++;
         }

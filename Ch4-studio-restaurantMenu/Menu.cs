@@ -74,10 +74,10 @@ namespace Ch4_studio_restaurantMenu
             Console.WriteLine($"Last updated on: {LastUpdateTime}\n");
             foreach (string category in categories)
             {
-                Console.WriteLine($"\t{category}\n");
+                Console.WriteLine($"\t{category.ToUpper()}\n");
                 foreach (Item item in Items)
                 {
-                    if (item.Category == category)
+                    if (item.Category == category && item.IsHidden == false)
                     {
                         if (item.IsNew)
                         {
