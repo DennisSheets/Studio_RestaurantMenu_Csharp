@@ -5,48 +5,89 @@ namespace Ch4_studio_restaurantMenu
 {
     internal class Menu
     {
-        private List<Item> items = new List<Item>();
-        private static List<string> categories = new List<string> { "appetizer", "main course", "dessert" };
-        private DateTime lastUpdateTime { get; set; }
-        private string MenuTitle { get; set; }
+        public List<Item> Items { get; set; }
+        public readonly static List<string> categories = new List<string> { "appetizer", "main course", "dessert" };
+        public DateTime LastUpdateTime { get; set; }
+        public string MenuTitle { get; set; }
+        
+        public int AvailSpace()
+        {
+            int total = 0;
+            foreach(Item item in Items)
+            {
+                if (item.IsEmpty)
+                {
+                    total++;
+                }
+            }
+            return total;
+        }
 
         public Menu(string menuTitle)
         {
-            this.items = new List<Item>();
-            this.lastUpdateTime = DateTime.Now;
+            Items = new List<Item>();
+            LastUpdateTime = DateTime.Now;
             MenuTitle = menuTitle;
         }
 
         public void addItem(Item item)
         {
-            if (!items.Contains(item))
+            if (!Items.Contains(item))
             {
-                items.Add(item);
+                Items.Add(item);
+                LastUpdateTime = DateTime.Now;
             }
         }
 
         public void removeItem(Item item)
         {
-            if (items.Contains(item))
+            if (Items.Contains(item))
             {
-                items.Remove(item);
+                Items.Remove(item);
+                LastUpdateTime = DateTime.Now;
             }
         }
+
+        public void isNew(Item item)
+        {
+            item.IsNew = !item.IsNew;
+            LastUpdateTime = DateTime.Now;
+        }
+
+        public void editItem(Item item, string name,string description,double price)
+        {
+            if (name != "") { item.Name = name;}
+            if (description != "") {item.Description = description;}
+            if (price != null) { item.Price = price; }
+        }
+
+        public void rename(string newName)
+        {
+            this.MenuTitle = newName;
+            LastUpdateTime = DateTime.Now;
+        }
+
 
         public void printMenu()
         {
             Console.WriteLine(MenuTitle);
-            Console.WriteLine($"Last updated on: {lastUpdateTime}\n");
+            Console.WriteLine($"Last updated on: {LastUpdateTime}\n");
             foreach (string category in categories)
             {
                 Console.WriteLine($"\t{category}\n");
-                foreach (Item item in items)
+                foreach (Item item in Items)
                 {
                     if (item.Category == category)
                     {
-                        Console.WriteLine($"\t\t{item.Name}\t{item.Description}\t\t${item.Price}");
+                        if (item.IsNew)
+                        {
+                            Console.WriteLine($"\t\t{item.Name}\t{item.Description}\t\t${item.Price}  NEW");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"\t\t{item.Name}\t{item.Description}\t\t${item.Price}");
+                        } 
                     }
-
                 }
                 Console.WriteLine("\t");
             }
