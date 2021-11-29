@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "adcd19e0-de2f-4ba5-a7a3-720c7cd343ee": {
+      "ProjectGuid": "adcd19e0-de2f-4ba5-a7a3-720c7cd343ee",
+      "DisplayName": "Ch4-5_studio-restaurantMenu",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
