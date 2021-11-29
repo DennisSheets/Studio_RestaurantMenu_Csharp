@@ -44,7 +44,7 @@ namespace Ch4_studio_restaurantMenu
 
         public override string ToString()
         {
-            return $"ID:{ID}  Name:{Name} Price:{Price}";
+            return $"ID:{ID}  Name:{Name}  Description:{Description}  Price:{Price}";
         }
 
         public override bool Equals(object obj)

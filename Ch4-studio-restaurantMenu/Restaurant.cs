@@ -9,7 +9,7 @@ namespace Ch4_studio_restaurantMenu
 
         static void Main(string[] args)
         {
-            Menu menu1 = new Menu("Eat Stuff");
+            Menu menu1 = new Menu("Eat This and Like it!!!");
 
             List<Item> emptyItems = new List<Item> {
                 new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(),
@@ -45,14 +45,13 @@ namespace Ch4_studio_restaurantMenu
 
 
             void logic() {
-                string error = "\t\t !!!!!   NOT A VALID SELECTION   !!!!!";
                 Menu menu = menu1;
                 List<Item> items = menu.Items;
                 
                 try
                 {
                     int selection = HelperMethods.menuOptions();
-                    if (selection >= 1 || selection <= 5)
+                    if (selection >= 1 && selection <= 6)
                     {
                         if (selection == 1)
                         {
@@ -68,8 +67,10 @@ namespace Ch4_studio_restaurantMenu
                             }
                             else 
                             {
-                                HelperMethods.ErrorCode();
-                                Console.WriteLine("Menu is full! You'll need to remove or edit an exiting item");
+                                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                                Console.WriteLine($"\t{Error.errors["fullMenu"]}");
+                                Console.ResetColor();
                                 logic();
                             }
                         }
@@ -89,18 +90,28 @@ namespace Ch4_studio_restaurantMenu
                         {
                             run();
                         }
+                        else if (selection == 6)
+                        {
+                            int index = HelperMethods.IndexFromList(items, selection);
+                            HelperMethods.DisplayItem(items[index-1]);
+                            logic();
+                        }
                         else
                         {
-                            HelperMethods.ErrorCode();
-                            Console.WriteLine($"{error}");
+                            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                            Console.WriteLine($"\t{Error.errors["notValid"]}");
+                            Console.ResetColor();
                             logic();
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    HelperMethods.ErrorCode();
-                    Console.WriteLine($"{error}");
+                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                    Console.WriteLine($"\t{Error.errors["notValid"]}");
+                    Console.ResetColor();
                     logic();
                 }
             }

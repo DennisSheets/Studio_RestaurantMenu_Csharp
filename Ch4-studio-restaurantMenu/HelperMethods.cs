@@ -7,11 +7,11 @@ namespace Ch4_studio_restaurantMenu
     internal class HelperMethods
     {
 
-        public static void ErrorCode()
+        public static string ErrorCode()
         {
             Random random = new Random();
-            int index = random.Next(0,Error.code.Count);
-            Console.WriteLine(Error.code[index]);
+            int index = random.Next(0, Error.code.Count);
+            return Error.code[index];
         }
 
         public static int menuOptions()
@@ -25,99 +25,231 @@ namespace Ch4_studio_restaurantMenu
                 $"\t\t2 - ADD a new item to the menu\n" +
                 $"\t\t3 - DELETE or HIDE an item\n" +
                 $"\t\t4 - EDIT an item\n" +
-                $"\t\t5 - DISPLAY the menu\n");
+                $"\t\t5 - DISPLAY the menu\n" +
+                $"\t\t6 - DISPLAY and item\n");
 
             return int.Parse(Console.ReadLine());
         }
 
+        public static void DisplayItem(Item item)
+        {
+            Console.WriteLine($"\n" +
+                $"\t\tName:        {item.Name}\n" +
+                $"\t\tDescription: {item.Description}\n" +
+                $"\t\tPrice:       {item.Price}\n" +
+                $"\t\tCategory:    {item.Category}\n" +
+                $"\t\tisEmpty:     {item.IsEmpty}\n" +
+                $"\t\tisNew:       {item.IsNew}\n" +
+                $"\t\tisHidden:    {item.IsHidden}\n");
+        }
+ 
+
 
         public static void UpdateTitle(Menu menu)
         {
+            Console.WriteLine("\n");
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("\tEnter the new Title");
             Console.ResetColor();
-            Console.WriteLine("\n");
             string newName = Console.ReadLine();
-            menu.rename(newName);
-        }
-
-
-        public static int IndexFromList(List<Item> list, int selection)
-        {
-            if (selection == 3)
-                { Console.WriteLine("Enter the ID: of the Item that you want to Delete or Hide"); }
-            else
-                { Console.WriteLine("Enter the ID: of the Item that you want to Edit? "); }
-
-            foreach (Item item in list)
+            if (newName == "")
             {
-                if (!item.IsEmpty)
-                    if (!item.IsHidden) 
-                        { 
-                            Console.Write("\t" + item.ToString() + "\n");
-                        }
-                    else 
-                        {
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
-                            Console.Write("\t" + item.ToString() + "     --HIDDEN FROM MENU--");
-                            Console.BackgroundColor = ConsoleColor.Black;
-                            Console.Write("\n");
-                    }
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["titleChange"]}");
+                Console.ResetColor();
+                UpdateTitle(menu);
             }
-            string itemToEdit = Console.ReadLine();
-            return int.Parse(itemToEdit);
+            else
+            {
+                menu.rename(newName);
+            }
         }
+
+        public static string ItemName()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"\tEnter the new item's name: ");
+            Console.ResetColor();
+            string itemName = Console.ReadLine();
+            if (itemName == "")
+            {
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["itemName"]}");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                ItemName();
+            }
+            return itemName;
+        }
+
+        public static string ItemDescription()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"\tEnter the new item's description: ");
+            Console.ResetColor();
+            string itemDescription = Console.ReadLine();
+            if (itemDescription == "")
+            {
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["itemDescription"]}");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                ItemDescription();
+            }
+            return itemDescription;
+        }
+
+        public static double ItemPrice()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"\tEnter the new item's price: ");
+            Console.ResetColor();
+            string itemPrice = Console.ReadLine();
+            Console.WriteLine(double.Parse(itemPrice));
+            try
+            {
+                double.Parse(itemPrice);
+            }
+            catch (Exception ex)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["itemPrice"]}");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                ItemPrice();
+            }
+            return double.Parse(itemPrice);
+        }
+
+        public static string ItemCategory()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"\tEnter 1-3 for the new Item's Category: \n");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t1 - appetizer\n" +
+                                "\t\t2 - main course\n" +
+                                "\t\t3 - desert\n");
+            string itemCategory = Console.ReadLine();
+            try
+            {
+                int.Parse(itemCategory);
+            }
+            catch (Exception ex)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["itemCategory"]}");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                ItemCategory();
+            }
+
+            if (itemCategory == "" || int.Parse(itemCategory) < 1 || int.Parse(itemCategory) > 3)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["itemCategory"]}");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                ItemCategory();
+            }
+            if (int.Parse(itemCategory) == 1)
+            {
+                return Menu.Categories[0];
+            }
+            else if (int.Parse(itemCategory) == 2)
+            {
+                return Menu.Categories[1];
+            }
+            else
+            {
+                return Menu.Categories[2];
+            }
+
+        }
+
+        public static bool NewItem()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"\tDo you want this tagged as a NEW item? Enter 1 or 2. \n ");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t1 - yes\n" +
+                                $"\t\t2 - no\n");
+            string newSelection = Console.ReadLine();
+            
+            try
+            {
+                int.Parse(newSelection);
+            }
+            catch (Exception ex)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["newItem"]}");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                NewItem();
+            }
+            if (newSelection == "" || int.Parse(newSelection) < 1 || int.Parse(newSelection) > 2)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"\t{HelperMethods.ErrorCode()}");
+                Console.WriteLine($"\t{Error.errors["newItem"]}");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                NewItem();
+            }
+            if (int.Parse(newSelection) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
 
         public static void AddItem(List<Item> list)
         {
-            Console.WriteLine($"\tEnter the new item's name: ");
-            string itemName = Console.ReadLine();
-
-            Console.WriteLine($"\tEnter the new item's description");
-            string itemDescription = Console.ReadLine();
-
-            Console.WriteLine($"\tEnter the new item's price");
-            string itemPrice = Console.ReadLine();
-
-            Console.WriteLine($"\tCategory: \n" +
-                "\t\t1 - appetizer\n" +
-                "\t\t2 - main course\n" +
-                "\t\t3 - desert\n");
-            int categorySelection = int.Parse(Console.ReadLine());
-            
-            Console.WriteLine($"\tDo you want this tagged as a NEW item? \n " +
-                $"\t\t1 - yes\n" +
-                $"\t\t2 - no\n");
-            int newSelection = int.Parse(Console.ReadLine());
-
-            bool itemSetAsNew;
-            if (newSelection == 1) 
-                { itemSetAsNew = true; }
-            else 
-                { itemSetAsNew = false; }
-
-            string itemCategory;
-            if (categorySelection == 1) 
-                { itemCategory = Menu.categories[0]; }
-            else if (categorySelection == 2) 
-                { itemCategory = Menu.categories[1]; }
-            else if (categorySelection == 3) 
-                { itemCategory = Menu.categories[2]; }
-            else 
-                { itemCategory = "\tWhat the fuck is this"; }
-
             int index = list.FindIndex(x => x.IsEmpty == true);
-            if (itemName != "")
-                { list[index].Name = itemName; }
-            if (itemDescription != "") 
-                { list[index].Description = itemDescription; }
-            if (itemPrice != "")       
-                { list[index].Price = double.Parse(itemPrice); }
-            if (itemCategory != "")    
-                { list[index].Category = itemCategory; }
+            list[index].Name = ItemName(); 
+            list[index].Description = ItemDescription();
+            list[index].Price = ItemPrice();
+            list[index].Category = ItemCategory();
             list[index].IsEmpty = false;
-            list[index].IsNew = itemSetAsNew;
+            list[index].IsNew = NewItem();
+        }
+
+        public static int IndexFromList(List<Item> list, int selection)
+        {
+            if (selection == 3)
+            { Console.WriteLine("Enter the ID: of the Item that you want to Delete or Hide"); }
+            else
+            { Console.WriteLine("Enter the ID: of the Item that you want to Edit? "); }
+
+            foreach (Item item in list)
+            {
+                if (!item.IsEmpty)
+                    if (!item.IsHidden)
+                    {
+                        Console.Write("\t" + item.ToString() + "\n");
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.Write("\t" + item.ToString() + "     --HIDDEN FROM MENU--");
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write("\n");
+                    }
+            }
+            string itemToEdit = Console.ReadLine();
+            return int.Parse(itemToEdit);
         }
 
 
@@ -144,9 +276,9 @@ namespace Ch4_studio_restaurantMenu
             string newSelection = Console.ReadLine();
 
             string itemCategory;
-            if      (int.Parse(categorySelection) == 1) { itemCategory = Menu.categories[0]; }
-            else if (int.Parse(categorySelection) == 2) { itemCategory = Menu.categories[1]; }
-            else if (int.Parse(categorySelection) == 3) { itemCategory = Menu.categories[2]; }
+            if      (int.Parse(categorySelection) == 1) { itemCategory = Menu.Categories[0]; }
+            else if (int.Parse(categorySelection) == 2) { itemCategory = Menu.Categories[1]; }
+            else if (int.Parse(categorySelection) == 3) { itemCategory = Menu.Categories[2]; }
             else                                        { itemCategory = "What the fuck is this"; }
 
             if (itemName != "")             { item.Name = itemName; }

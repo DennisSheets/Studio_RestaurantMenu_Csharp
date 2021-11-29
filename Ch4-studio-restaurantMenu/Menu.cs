@@ -6,7 +6,7 @@ namespace Ch4_studio_restaurantMenu
     internal class Menu
     {
         public List<Item> Items { get; set; }
-        public readonly static List<string> categories = new List<string> { "appetizer", "main course", "dessert" };
+        public static List<string> Categories = new List<string> { "appetizer", "main course", "dessert" };
         public DateTime LastUpdateTime { get; set; }
         public string MenuTitle { get; set; }
         
@@ -73,7 +73,9 @@ namespace Ch4_studio_restaurantMenu
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine($"\n\n\t\t\t {MenuTitle}     updated : {LastUpdateTime}\n");
             Console.ResetColor();
-            foreach (string category in categories)
+            
+            Console.WriteLine($"\t\t\t\t{HelperMethods.ErrorCode()}\n");
+            foreach (string category in Categories)
             {
                 Console.WriteLine($"\t{category.ToUpper()}\n");
                 foreach (Item item in Items)
